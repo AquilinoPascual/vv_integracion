@@ -14,6 +14,7 @@ public class SystemManager {
 	private final AuthDAO authDao;
 	private final GenericDAO dao;
 
+
 	public SystemManager(AuthDAO authDao, GenericDAO dao) {
 		super();
 		this.authDao = authDao;

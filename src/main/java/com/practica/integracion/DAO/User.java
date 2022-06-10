@@ -2,7 +2,7 @@ package com.practica.integracion.DAO;
 
 import java.util.List;
 
-public class User {
+public class 	User {
 
 	private String id;
 	private String firstName;
