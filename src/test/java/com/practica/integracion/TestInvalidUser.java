@@ -15,8 +15,7 @@ import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class TestInvalidUser {
@@ -46,8 +45,8 @@ public class TestInvalidUser {
 		inOrder = inOrder(mockAuthDao,mockGenericDao);
 		systemManager = new SystemManager(mockAuthDao, mockGenericDao);
 		Assertions.assertThrows(SystemManagerException.class,() -> {systemManager.startRemoteSystem(invalidUser.getId(), validArgument);});
-		inOrder.verify(mockAuthDao).getAuthData(invalidUser.getId());
-		inOrder.verify(mockGenericDao).getSomeData(null, "where id=" + validArgument);
+		inOrder.verify(mockAuthDao, times(1)).getAuthData(invalidUser.getId());
+		inOrder.verify(mockGenericDao, times(1)).getSomeData(null, "where id=" + validArgument);
 
 	}
 
@@ -60,8 +59,8 @@ public class TestInvalidUser {
 		inOrder = inOrder(mockAuthDao,mockGenericDao);
 		systemManager = new SystemManager(mockAuthDao, mockGenericDao);
 		Assertions.assertThrows(SystemManagerException.class,() -> {systemManager.stopRemoteSystem(invalidUser.getId(), validArgument);});
-		inOrder.verify(mockAuthDao).getAuthData(invalidUser.getId());
-		inOrder.verify(mockGenericDao).getSomeData(null, "where id=" + validArgument);
+		inOrder.verify(mockAuthDao, times(1)).getAuthData(invalidUser.getId());
+		inOrder.verify(mockGenericDao, times(1)).getSomeData(null, "where id=" + validArgument);
 	}
 
 	@Test
@@ -73,8 +72,8 @@ public class TestInvalidUser {
 		inOrder = inOrder(mockAuthDao, mockGenericDao);
 		systemManager = new SystemManager(mockAuthDao, mockGenericDao);
 		Assertions.assertThrows(SystemManagerException.class,() -> {systemManager.addRemoteSystem(invalidUser.getId(), newAddress);});
-		inOrder.verify(mockAuthDao).getAuthData(invalidUser.getId());
-		inOrder.verify(mockGenericDao).updateSomeData(null, newAddress);
+		inOrder.verify(mockAuthDao, times(1)).getAuthData(invalidUser.getId());
+		inOrder.verify(mockGenericDao, times(1)).updateSomeData(null, newAddress);
 	}
 
 	//Se puede elminiar con usuario inválido
@@ -86,8 +85,8 @@ public class TestInvalidUser {
 		inOrder = inOrder(mockAuthDao, mockGenericDao);
 		systemManager = new SystemManager(mockAuthDao, mockGenericDao);
 		Assertions.assertThrows(SystemManagerException.class,() -> {systemManager.deleteRemoteSystem(invalidUser.getId(), validArgument);});
-		inOrder.verify(mockAuthDao).getAuthData(invalidUser.getId());
-		inOrder.verify(mockGenericDao).deleteSomeData(null, "where id=" + validArgument);
+		inOrder.verify(mockAuthDao, times(1)).getAuthData(invalidUser.getId());
+		inOrder.verify(mockGenericDao, times(1)).deleteSomeData(null, "where id=" + validArgument);
 	}
 	@Test
 	@DisplayName("Invalid User startRemoteSystem and invalidArgument")
@@ -97,8 +96,8 @@ public class TestInvalidUser {
 		inOrder = inOrder(mockAuthDao,mockGenericDao);
 		systemManager = new SystemManager(mockAuthDao, mockGenericDao);
 		Assertions.assertThrows(SystemManagerException.class,() -> {systemManager.startRemoteSystem(invalidUser.getId(), invalidArgument);});
-		inOrder.verify(mockAuthDao).getAuthData(invalidUser.getId());
-		inOrder.verify(mockGenericDao).getSomeData(null, "where id=" + invalidArgument);
+		inOrder.verify(mockAuthDao, times(1)).getAuthData(invalidUser.getId());
+		inOrder.verify(mockGenericDao, times(1)).getSomeData(null, "where id=" + invalidArgument);
 
 	}
 
@@ -110,8 +109,8 @@ public class TestInvalidUser {
 		inOrder = inOrder(mockAuthDao,mockGenericDao);
 		systemManager = new SystemManager(mockAuthDao, mockGenericDao);
 		Assertions.assertThrows(SystemManagerException.class,() -> {systemManager.stopRemoteSystem(invalidUser.getId(), invalidArgument);});
-		inOrder.verify(mockAuthDao).getAuthData(invalidUser.getId());
-		inOrder.verify(mockGenericDao).getSomeData(null, "where id=" + invalidArgument);
+		inOrder.verify(mockAuthDao, times(1)).getAuthData(invalidUser.getId());
+		inOrder.verify(mockGenericDao, times(1)).getSomeData(null, "where id=" + invalidArgument);
 	}
 
 	@Test
@@ -123,8 +122,8 @@ public class TestInvalidUser {
 		inOrder = inOrder(mockAuthDao, mockGenericDao);
 		systemManager = new SystemManager(mockAuthDao, mockGenericDao);
 		Assertions.assertThrows(SystemManagerException.class,() -> {systemManager.addRemoteSystem(invalidUser.getId(), invalidAddress);});
-		inOrder.verify(mockAuthDao).getAuthData(invalidUser.getId());
-		inOrder.verify(mockGenericDao).updateSomeData(null, invalidAddress);
+		inOrder.verify(mockAuthDao, times(1)).getAuthData(invalidUser.getId());
+		inOrder.verify(mockGenericDao, times(1)).updateSomeData(null, invalidAddress);
 	}
 
 	//Se puede eliminar con usuario y argumento inválido
@@ -136,8 +135,8 @@ public class TestInvalidUser {
 		inOrder = inOrder(mockAuthDao, mockGenericDao);
 		systemManager = new SystemManager(mockAuthDao, mockGenericDao);
 		Assertions.assertThrows(SystemManagerException.class,() -> {systemManager.deleteRemoteSystem(invalidUser.getId(), invalidArgument);});
-		inOrder.verify(mockAuthDao).getAuthData(invalidUser.getId());
-		inOrder.verify(mockGenericDao).deleteSomeData(null, "where id=" + invalidArgument);
+		inOrder.verify(mockAuthDao, times(1)).getAuthData(invalidUser.getId());
+		inOrder.verify(mockGenericDao, times(1)).deleteSomeData(null, "where id=" + invalidArgument);
 	}
 
 }
