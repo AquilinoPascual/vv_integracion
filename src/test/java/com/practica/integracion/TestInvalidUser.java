@@ -77,6 +77,7 @@ public class TestInvalidUser {
 		inOrder.verify(mockGenericDao).updateSomeData(null, newAddress);
 	}
 
+	//Se puede elminiar con usuario inválido
 	@Test
 	@DisplayName("Invalid User deleteRemoteSystem")
 	public void testDeleteRemoteSystem() throws OperationNotSupportedException {
@@ -126,6 +127,7 @@ public class TestInvalidUser {
 		inOrder.verify(mockGenericDao).updateSomeData(null, invalidAddress);
 	}
 
+	//Se puede eliminar con usuario y argumento inválido
 	@Test
 	@DisplayName("Invalid User deleteRemoteSystem and invalidArgument")
 	public void testDeleteRemoteSystemInvalidArgument() throws OperationNotSupportedException {
